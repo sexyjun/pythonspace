@@ -22,75 +22,55 @@ drink_price = {1: 1000, 2: 1200, 3: 1500}
 menu_save = {} # 고객 주문 메뉴 기록
 price_save ={} # 고객 주문 금액 기록
 
-# >> view단: 메뉴 선택(최초)
-print('##################################################')
-print('## == cnu 버거 (ver.01) ==')
-print('## cnu 버거에 방문해주셔서 감사합니다.')
-print('##################################################')
-print('## 메뉴')
-print('## 1.햄버거 세트')
-print('## 2.햄버거 단품')
-print('## 3.사이드 메뉴')
-print('## 4.음료')
-print('##################################################')
-
-
 while True:
-    print('## 원하시는 메뉴의 번호를 입력해주세요.')
-    menu_num = int(input('>> 번호:')) # 사용자로부터 주문 menu 입력
+    menu_num = choice.choice_main()
+    if menu_num == 1:
 
-    if menu_num >= 1 and menu_num <= 4:
-        break
-    else:
-        print('# msg: 1~4의 번호만 입력해주세요 :)')
+        choice_num = choice.choice_burger()
+        menu_save['bureger'] = burger_name[choice_num]
+        price_save['burger'] = burger_price[choice_num]
 
-if menu_num == 1:
+        choice_num2 = choice.choice_side()
+        menu_save['side'] = side_name[choice_num2]
+        price_save['side'] = side_price[choice_num2]
 
-    choice_num = choice.choice_burger()
-    menu_save['bureger'] = burger_name[choice_num]
-    price_save['burger'] = burger_price[choice_num]
+        choice_num3 = choice.choice_drink()
+        menu_save['drink'] = drink_name[choice_num3]
+        price_save['drink'] = drink_price[choice_num3]
 
-    choice_num2 = choice.choice_side()
-    menu_save['side'] = side_name[choice_num2]
-    price_save['side'] = side_price[choice_num2]
+    elif menu_num == 2: # 햄버거 단품
 
-    choice_num3 = choice.choice_drink()
-    menu_save['drink'] = drink_name[choice_num3]
-    price_save['drink'] = drink_price[choice_num3]
-
-elif menu_num == 2: # 햄버거 단품
-
-    choice_num = choice.choice_burger()
-    menu_save['bureger'] = burger_name[choice_num]
-    price_save['burger'] = burger_price[choice_num]
+        choice_num = choice.choice_burger()
+        menu_save['bureger'] = burger_name[choice_num]
+        price_save['burger'] = burger_price[choice_num]
 
 
-elif menu_num == 3: # 사이드 메뉴
-    choice_num2 = choice.choice_side()
-    menu_save['side'] = side_name[choice_num2]
-    price_save['side'] = side_price[choice_num2]
+    elif menu_num == 3: # 사이드 메뉴
+        choice_num2 = choice.choice_side()
+        menu_save['side'] = side_name[choice_num2]
+        price_save['side'] = side_price[choice_num2]
 
 
-elif menu_num == 4: # 음료
-    choice_num3 = choice.choice_drink()
-    menu_save['drink'] = drink_name[choice_num3]
-    price_save['drink'] = drink_price[choice_num3]
+    elif menu_num == 4: # 음료
+        choice_num3 = choice.choice_drink()
+        menu_save['drink'] = drink_name[choice_num3]
+        price_save['drink'] = drink_price[choice_num3]
 
-###########################
-# 주문 메뉴와 금액 정산 및 출력
-###########################
+    ###########################
+    # 주문 메뉴와 금액 정산 및 출력
+    ###########################
 
-# total 주문 금액 계산
-total_price = 0 # total 주문 금액
+    # total 주문 금액 계산
+    total_price = 0 # total 주문 금액
 
-for price in price_save.values():
-    total_price += price
+    for price in price_save.values():
+        total_price += price
 
-print('##############################')
-print('## 고객님의 주문하신 메뉴는')
-for i, menu in enumerate(menu_save.values()):
-    print(f'## {i+1}. {menu}')
-print(f'## 으로 총 주문 금액은 {total_price}원 입니다.')
-print('###########################################')
-print('## 이용해주셔서 감사합니다.')
-print('###########################################')
+    print('##############################')
+    print('## 고객님의 주문하신 메뉴는')
+    for i, menu in enumerate(menu_save.values()):
+        print(f'## {i+1}. {menu}')
+    print(f'## 으로 총 주문 금액은 {total_price}원 입니다.')
+    print('###########################################')
+    print('## 이용해주셔서 감사합니다.')
+    print('###########################################')
